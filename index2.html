@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julia ❤️ Arthur</title>
+    <link rel="shortcut icon" href="assets/heart.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url(assets/background.png);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 10px;
+
+            font-weight: bold;
+            color: #ecebeb;
+        }
+
+        section {
+            position: relative;
+            background: rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            max-width: 90%;
+            width: 500px;
+        }
+
+        .audio-container {
+            background: rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .audio-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 20px;
+            border: none;
+            outline: none;
+            border-radius: 15px;
+        }
+
+        .info-section {
+            margin-top: 15px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #ecebeb;
+        }
+
+        .heart {
+            color: red;
+            font-size: 1.2em;
+        }
+
+        .mais {
+            background: rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 20px;
+            color: #ecebeb;
+            margin-top: 10px;
+            text-decoration: none;
+            transition: .5s;
+        }
+
+        .mais:hover {
+            transition: .5s;
+            transform: scale(90%);
+        }
+
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        iframe {
+        width: 60%;
+        max-width: 400px;
+    }
+
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            white-space: nowrap;
+            animation: brilho 2s infinite alternate;
+        }
+
+        @keyframes brilho {
+            from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); }
+            to { text-shadow: 0 0 20px rgba(255, 255, 255, 1); }
+        }
+
+        #timer {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 20px;
+            border-radius: 10px;
+            animation: pulse 1.5s infinite alternate;
+            margin-top: 10px;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        
+        #mensagem {
+            font-size: 1.4rem;
+            margin-top: 15px;
+            opacity: 0;
+            animation: fadein 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .heart {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.8;
+            transform: rotate(0deg); /* Começa sem rotação */
+            animation: fall 5s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            position: absolute; color: red; opacity: 0.8;
+        }
+
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 25px;
+        }
+
+        /* Animação de queda com rotação */
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg); /* Sem rotação no início */
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg); /* Rotação na metade do caminho */
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg); /* Rotação completa ao final */
+                opacity: 0;
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+
+            iframe {
+                width: 80%;
+                height: 120px;
+            }
+
+            .overlay-text {
+                font-size: 2rem;
+            }
+
+            #timer {
+                font-size: 1.5rem;
+                padding: 10px 15px;
+            }
+
+            #mensagem {
+                font-size: 1.2rem;
+            }
+
+            .heart {
+                font-size: 15px;
+            }
+
+        @media (max-width: 480px) {
+
+            iframe {
+                width: 90%;
+                height: 100px;
+            }
+
+            .overlay-text {
+                font-size: 1.8rem;
+            }
+
+            #timer {
+                font-size: 1.3rem;
+                padding: 8px 12px;
+            }
+
+            #mensagem {
+                font-size: 1rem;
+            }
+
+            .heart {
+                font-size: 12px;
+            }
+        }
+    }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="image-container">
+            <div> 🥰💖Mais musicas, clique ou escaneie o código 👇</div>
+            <a href='https://open.spotify.com/playlist/0mCG5Uj0E57Ya5Fpm2N2p9?si=3d294c711e024539&pt=126a3b23df36ab395705eea3f47aaa1c' border='0' style='cursor:pointer;display:block' target="_blank"><img src='https://storage2.me-qr.com/qr/182878817.png' alt='Create qr code for free'></a><a href='https://open.spotify.com/playlist/0mCG5Uj0E57Ya5Fpm2N2p9?si=3d294c711e024539&pt=126a3b23df36ab395705eea3f47aaa1c' border='0' style='cursor:default;display:none'target="_blank">QR code para a playlist</a>
+        </div>
+    </section>
+
+    <div>
+        <audio autoplay loop>
+            <source src="assets/pupila.mp3" type="audio/mpeg">
+            <source src="assets/pupila.ogg" type="audio/ogg">
+            <source src="assets/pupila.wav" type="audio/wav">
+            Seu navegador não suporta a musica.
+        </audio>
+    </div>
+
+    <a href="index.html" class="mais">
+        Voltar
+    </a>
+
+
+
+    <script>
+        function criarCorações() {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        document.body.appendChild(heart);
+
+        let size = Math.random() * 20 + 10; // Tamanho aleatório
+        heart.style.fontSize = size + "px";
+        heart.style.left = Math.random() * 100 + "vw"; // Posição horizontal aleatória
+        heart.style.top = "-10px"; // Agora começa no topo da página
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s"; // Tempo de queda aleatório
+
+        setTimeout(() => heart.remove(), 5000); // Remove os corações depois que caírem
+    }
+
+    setInterval(criarCorações, 300);
+    </script>
+</body>
+</html>
